@@ -5,6 +5,8 @@ var serverIP = "http://10.65.18.129";
 //var serverIP = "http://localhost";
 
 sensorData.light = 10;
+sensorData.temperature = 60;
+sensorData.where = "O";
 
 console.log("Posting: " + sensorData + " to " + serverIP);
 

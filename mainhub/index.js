@@ -69,7 +69,9 @@ function displayReadings()
 }
 
 function getDisplayString(sr) {
-	var val = "F: " + sr.temperature;
+	var val = "";
+	val += sr.where + " ";
+	val += "F: " + sr.temperature;
 	val += " ";
 	val += sr.light;
 
@@ -77,6 +79,7 @@ function getDisplayString(sr) {
 }
 
 function updateLocal() {
+	listOfStuffToDisplay["local"].where = "I";
 	listOfStuffToDisplay["local"].temperature = getTemp();
 	listOfStuffToDisplay["local"].light = getLight();
 }
