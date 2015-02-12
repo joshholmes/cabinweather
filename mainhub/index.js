@@ -13,13 +13,12 @@ myLcd.setColor(64,255,64);
 
 setInterval(function() {
 	myLcd.setCursor(0,0);
-	myLcd.write(getDateTime()); // doesn't work for some reason
+	myLcd.write(fixedLengthString(getDateTime()); // doesn't work for some reason
 	tempDisplay();
 },1000);
 
 
 var B = 3975;
-var clearString = "                "; // Will be called when we want to clear a line on the LCD
 
 function tempDisplay()
 {
@@ -66,7 +65,7 @@ function getDateTime() {
     return hour + ":" + min + ":" + sec + " " + year + ":" + month + "/" + day;
 }
 
-var screenWidth = 16;
+var clearString = "                "; //used to make sure that LCD is cleared.  
 function fixedLengthString(string) {
-    return String.format("%1$"+screenWidth+ "s", string);
+    return (string + clearString).substring(0, 16);
 }
