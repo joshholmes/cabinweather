@@ -36,6 +36,6 @@ function getDateTime() {
     var day  = date.getDate();
     day = (day < 10 ? "0" : "") + day;
 
-    return year + ":" + month + ":" + day + ":" + hour + ":" + min + ":" + sec;
+    return hour + ":" + min + ":" + sec + " " + year + ":" + month + "/" + day;
 
 }
