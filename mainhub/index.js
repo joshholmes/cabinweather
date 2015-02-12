@@ -11,7 +11,7 @@ var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
 myLcd.setColor(64,255,64);
 setInterval(function() {
 	myLcd.setCursor(0,0);
-	myLcd.write('Hello World: ' + getDateTime(); // doesn't work for some reason
+	myLcd.write('Hello World: ' + getDateTime()); // doesn't work for some reason
 },1000);
 
 
