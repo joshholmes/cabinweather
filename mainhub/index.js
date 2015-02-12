@@ -1,1 +1,3 @@
-require('./wunderground.js');
+//require('./wunderground.js');
+
+var LCD = require('jsupm_i2clcd');

@@ -14,7 +14,7 @@ var opts = {
 }
 */
 
-// run once immediatel;y
+// run once immediately
 updateHourlyForecasts();
 // loop every 30 min getting most recent hourly forecast
 setInterval(updateHourlyForecasts, 30 * 60 * 1000);
