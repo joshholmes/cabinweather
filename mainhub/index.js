@@ -16,7 +16,7 @@ myLcd.setColor(64,255,64);
 setInterval(function() {
 	myLcd.setCursor(0,0);
 	myLcd.write(fixedLengthString(getDateTime())); // doesn't work for some reason
-	tempDisplay();
+	displayReadings();
 },1000);
 
 
@@ -34,7 +34,7 @@ function displayReadings()
 	myLcd.setCursor(1,0);
 	myLcd.setCursor(1,0);
 	myLcd.write(fixedLengthString(val));  // This shows the temperature to 2 decimal places
-	setTimeout(tempDisplay,1000);  // ... every second
+	//setTimeout(displayReadings,1000);  // ... every second
 }
 
 function getTemp()
