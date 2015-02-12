@@ -16,9 +16,6 @@ myLcd.setColor(64,255,64);
 
 var http = require('http');
 http.createServer(function (req, res) {
-	console.log(request.headers);
-
-
   req.on('data', function (chunk) {
     console.log('BODY: ' + chunk);
 
