@@ -78,14 +78,21 @@ setInterval(function() {
 //	console.log("Displaying " + key);
 
 	myLcd.setCursor(0,0);
-	myLcd.write(getWundergroundDisplayString(sr)); 
-	if (sr.temperature > 50)
-	{
-		myLcd.setColor(64,255,64);
-	}
-	else
-	{
-		myLcd.setColor(243,31,31);
+
+	if (sr == null) {
+		myLcd("Fetching wunderground");
+		}
+		else
+		 {
+		myLcd.write(getWundergroundDisplayString(sr)); 
+		if (sr.temperature > 50)
+		{
+			myLcd.setColor(64,255,64);
+		}
+		else
+		{
+			myLcd.setColor(243,31,31);
+		}
 	}
 	displayReadings();
 },1000);
@@ -114,8 +121,6 @@ function getDisplayString(sr) {
 }
 
 function getWundergroundDisplayString(sr) {
-	if (sr == null) return "Fetching wunderground";
-
 	var val = "+";
 	val += sr.hour + " ";
 	val += "F" + sr.temperature;
