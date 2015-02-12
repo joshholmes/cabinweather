@@ -10,6 +10,7 @@ var date = new Date();
 //Initialize Jhd1313m1 at 0x62 (RGB_ADDRESS) and 0x3E (LCD_ADDRESS) 
 var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
 myLcd.setColor(64,255,64);
+
 setInterval(function() {
 	myLcd.setCursor(0,0);
 	myLcd.write(getDateTime()); // doesn't work for some reason
@@ -22,10 +23,10 @@ var B = 3975;
 function tempDisplay()
 {
 	var fahrenheit_temperature = getTemp();  // ask for the temperature
-	Lcd.setCursor(1,0);
-	Lcd.write(clearString);  // clear the "HOLD" string, in case it was there
-	Lcd.setCursor(1,0);
-	Lcd.write("F: " + parseInt(fahrenheit_temperature*100,10)/100);  // This shows the temperature to 2 decimal places
+	myLcd.setCursor(1,0);
+	myLcd.write(clearString);  // clear the "HOLD" string, in case it was there
+	myLcd.setCursor(1,0);
+	myLcd.write("F: " + parseInt(fahrenheit_temperature*100,10)/100);  // This shows the temperature to 2 decimal places
 	setTimeout(tempDisplay,1000);  // ... every second
 }
 
