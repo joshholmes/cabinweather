@@ -157,10 +157,8 @@ function updateWeatherUnderground() {
 	}
 }
 
-setTimeout(function{
-	setInterval(function() {
-		updateWeatherUnderground();
-	}, 10000);
+setInterval(function() {
+	updateWeatherUnderground();
 }, 10000);
 
 var B = 3975;
