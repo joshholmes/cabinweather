@@ -1,5 +1,5 @@
 //require('./wunderground.js');
-require('../common/sensorReadings.js');
+var SensorReadings = require('../common/sensorReadings.js');
 
 var mraa = require("mraa"); // A new object of class "mraa"
 // Load i2clcd module
