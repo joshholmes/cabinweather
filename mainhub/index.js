@@ -29,7 +29,7 @@ http.createServer(function (req, res) {
     var sensorData = JSON.parse(chunk);
 	listOfStuffToDisplay["remote"] = sensorData;
 
-    console.log("Light: " + sensorData.light);
+    console.log("Light: " + listOfStuffToDisplay["remote"].light);
   });
 
 
