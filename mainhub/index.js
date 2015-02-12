@@ -59,7 +59,8 @@ function displayReadings()
 {
 	updateLocal();
 
-	var sr = listOfStuffToDisplay["local"];
+	var key = Object.keys(listOfStuffToDisplay)[currentIndexToDisplay];
+	var sr = listOfStuffToDisplay[key];
 
 	myLcd.setCursor(1,0);
 	myLcd.setCursor(1,0);
