@@ -44,9 +44,15 @@ setInterval(function() {
 	displayReadings();
 },1000);
 
-
+var currentIndexToDisplay = 0;
 setInterval(function() {
-	console.log(button.read());
+	if (button.read()) {
+		currentIndexToDisplay++;
+		if (currentIndexToDisplay < listOfStuffToDisplay.length) {
+			currentIndexToDisplay = 0;
+		}
+		console.log('displaying: ' + currentIndexToDisplay)
+	}
 },100);
 
 function displayReadings()
