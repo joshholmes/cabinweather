@@ -14,12 +14,17 @@ var date = new Date();
 var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
 myLcd.setColor(64,255,64);
 
+var listOfStuffToDisplay = [];
+
+listOfStuffToDisplay["local"] = sensorReadings;
+
 var http = require('http');
 http.createServer(function (req, res) {
   req.on('data', function (chunk) {
     console.log('BODY: ' + chunk);
 
     var sensorData = JSON.parse(chunk);
+	listOfStuffToDisplay["remote"] = sensorData;
 
     console.log("Light: " + sensorData.light);
   });
@@ -37,23 +42,31 @@ setInterval(function() {
 },1000);
 
 
-var B = 3975;
-
 function displayReadings()
 {
-	sensorReadings.temperature = getTemp();
-	sensorReadings.light = getLight();
+	updateLocal();
 
-	var val = "F: " + sensorReadings.temperature;
-	val += " ";
-	val += sensorReadings.light;
+	var sr = listOfStuffToDisplay["local"])
 
 	myLcd.setCursor(1,0);
 	myLcd.setCursor(1,0);
-	myLcd.write(fixedLengthString(val));  // This shows the temperature to 2 decimal places
-	//setTimeout(displayReadings,1000);  // ... every second
+	myLcd.write(getDisplayString(sr);
 }
 
+function getDisplayString(sr) {
+	var val = "F: " + sr.temperature;
+	val += " ";
+	val += sr.light;
+
+	return fixedLengthString(val);
+}
+
+function updateLocal() {
+	listOfStuffToDisplay["local"].temperature = getTemp();
+	listOfStuffToDisplay["local"].light = getLight();
+}
+
+var B = 3975;
 function getTemp()
 {
 	var a = temperature.read();
