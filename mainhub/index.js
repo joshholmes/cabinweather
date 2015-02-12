@@ -61,6 +61,7 @@ function displayReadings()
 
 	var key = Object.keys(listOfStuffToDisplay)[currentIndexToDisplay];
 	var sr = listOfStuffToDisplay[key];
+	console.log("Displaying " + key);
 
 	myLcd.setCursor(1,0);
 	myLcd.setCursor(1,0);
