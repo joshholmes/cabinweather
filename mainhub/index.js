@@ -107,6 +107,8 @@ function getDisplayString(sr) {
 }
 
 function getWundergroundDisplayString(sr) {
+	if (sr == null) return "Fetching wunderground";
+	
 	var val = "+";
 	val += sr.hour + " ";
 	val += "F" + sr.temperature;
