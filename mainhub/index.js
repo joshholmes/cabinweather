@@ -80,10 +80,10 @@ setInterval(function() {
 	myLcd.setCursor(0,0);
 
 	if (sr == null) {
-		myLcd("Fetching wunderground");
-		}
-		else
-		 {
+		myLcd.write("Fetching wunderground");
+	}
+	else
+	{
 		myLcd.write(getWundergroundDisplayString(sr)); 
 		if (sr.temperature > 50)
 		{
