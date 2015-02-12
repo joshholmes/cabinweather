@@ -5,6 +5,8 @@ var mraa = require("mraa"); // A new object of class "mraa"
 var LCD = require('jsupm_i2clcd');
 //Grove Temperature module, plugged into Analog pin 0
 var temperature = new mraa.Aio(0);
+//Grove light module, plugged into Analog pin 1
+var light = new mraa.Aio(1);
 
 var date = new Date();
 //Initialize Jhd1313m1 at 0x62 (RGB_ADDRESS) and 0x3E (LCD_ADDRESS) 
@@ -20,12 +22,17 @@ setInterval(function() {
 
 var B = 3975;
 
-function tempDisplay()
+function displayReadings()
 {
 	var fahrenheit_temperature = getTemp();  // ask for the temperature
-	myLcd.setCursor(1,0);
-	myLcd.setCursor(1,0);
+	var light_level = getLight();  // ask for the temperature
+
 	var val = "F: " + parseInt(fahrenheit_temperature*100,10)/100;
+	val += "";
+	val += light_level;
+
+	myLcd.setCursor(1,0);
+	myLcd.setCursor(1,0);
 	myLcd.write(fixedLengthString(val));  // This shows the temperature to 2 decimal places
 	setTimeout(tempDisplay,1000);  // ... every second
 }
@@ -39,6 +46,13 @@ function getTemp()
 	var fahrenheit_temperature = (celsius_temperature * (9 / 5)) + 32; // convert to fahrenheit
 
 	return fahrenheit_temperature; // return the temperature
+}
+
+function getLight()
+{
+	var a = light.read();
+
+	return a; // return the light
 }
 
 function getDateTime() {
