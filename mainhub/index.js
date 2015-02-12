@@ -100,3 +100,8 @@ function getDateTime() {
 
     return hour + ":" + min + ":" + sec + " " + year + ":" + month + "/" + day;
 }
+
+var clearString = "                "; //used to make sure that LCD is cleared.  
+function fixedLengthString(string) {
+    return (string + clearString).substring(0, 16);
+}
