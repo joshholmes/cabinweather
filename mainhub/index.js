@@ -16,7 +16,6 @@ var wbutton = new mraa.Gpio(4);
 var date = new Date();
 //Initialize Jhd1313m1 at 0x62 (RGB_ADDRESS) and 0x3E (LCD_ADDRESS) 
 var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
-myLcd.setColor(64,255,64);
 
 var listOfStuffToDisplay = [];
 var listOfWundergroundToDisplay = [];
@@ -80,6 +79,14 @@ setInterval(function() {
 
 	myLcd.setCursor(0,0);
 	myLcd.write(getWundergroundDisplayString(sr)); 
+	if (sr.temperature > 50)
+	{
+		myLcd.setColor(64,255,64);
+	}
+	else
+	{
+		myLcd.setColor(243,31,31);
+	}
 	displayReadings();
 },1000);
 
@@ -108,7 +115,7 @@ function getDisplayString(sr) {
 
 function getWundergroundDisplayString(sr) {
 	if (sr == null) return "Fetching wunderground";
-	
+
 	var val = "+";
 	val += sr.hour + " ";
 	val += "F" + sr.temperature;
