@@ -9,6 +9,9 @@ var temperature = new mraa.Aio(0);
 //Grove light module, plugged into Analog pin 1
 var light = new mraa.Aio(1);
 
+var button = new mraa.Gpio(8);
+
+
 var date = new Date();
 //Initialize Jhd1313m1 at 0x62 (RGB_ADDRESS) and 0x3E (LCD_ADDRESS) 
 var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
@@ -41,6 +44,10 @@ setInterval(function() {
 	displayReadings();
 },1000);
 
+
+setInterval(function() {
+	console.log(button.read());
+},100);
 
 function displayReadings()
 {
