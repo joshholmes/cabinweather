@@ -53,11 +53,11 @@ function displayReadings()
 {
 	updateLocal();
 
-	var sr = listOfStuffToDisplay["local"]);
+	var sr = listOfStuffToDisplay["local"];
 
 	myLcd.setCursor(1,0);
 	myLcd.setCursor(1,0);
-	myLcd.write(getDisplayString(sr);
+	myLcd.write(getDisplayString(sr));
 }
 
 function getDisplayString(sr) {
