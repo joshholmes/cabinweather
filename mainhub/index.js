@@ -67,6 +67,6 @@ function getDateTime() {
 }
 
 var screenWidth = 16;
-var fixedLengthString(var string) {
+function fixedLengthString(var string) {
     return String.format("%1$"+screenWidth+ "s", string);
 }
