@@ -28,7 +28,7 @@ function displayReadings()
 	var light_level = getLight();  // ask for the temperature
 
 	var val = "F: " + parseInt(fahrenheit_temperature*100,10)/100;
-	val += "";
+	val += " ";
 	val += light_level;
 
 	myLcd.setCursor(1,0);
