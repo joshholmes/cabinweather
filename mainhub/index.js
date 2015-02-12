@@ -25,9 +25,9 @@ function tempDisplay()
 {
 	var fahrenheit_temperature = getTemp();  // ask for the temperature
 	myLcd.setCursor(1,0);
-	myLcd.write(clearString);  // clear the "HOLD" string, in case it was there
 	myLcd.setCursor(1,0);
-	myLcd.write("F: " + parseInt(fahrenheit_temperature*100,10)/100);  // This shows the temperature to 2 decimal places
+	var val = "F: " + parseInt(fahrenheit_temperature*100,10)/100;
+	myLcd.write(fixedLengthString(val));  // This shows the temperature to 2 decimal places
 	setTimeout(tempDisplay,1000);  // ... every second
 }
 
@@ -66,3 +66,7 @@ function getDateTime() {
     return hour + ":" + min + ":" + sec + " " + year + ":" + month + "/" + day;
 }
 
+var screenWidth = 16;
+var fixedLengthString(String string) {
+    return String.format("%1$"+screenWidth+ "s", string);
+}
