@@ -48,10 +48,10 @@ var currentIndexToDisplay = 0;
 setInterval(function() {
 	if (button.read()) {
 		currentIndexToDisplay++;
-		if (currentIndexToDisplay > listOfStuffToDisplay.length) {
+		if (currentIndexToDisplay >= listOfStuffToDisplay.length) {
 			currentIndexToDisplay = 0;
 		}
-		console.log('displaying: ' + currentIndexToDisplay)
+		console.log('displaying: ' + currentIndexToDisplay + " of " + listOfStuffToDisplay.length)
 	}
 },100);
 
