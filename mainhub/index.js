@@ -19,6 +19,7 @@ setInterval(function() {
 
 
 var B = 3975;
+var clearString = "                "; // Will be called when we want to clear a line on the LCD
 
 function tempDisplay()
 {
