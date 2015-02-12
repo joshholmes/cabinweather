@@ -10,6 +10,7 @@ var temperature = new mraa.Aio(0);
 var light = new mraa.Aio(1);
 
 var button = new mraa.Gpio(8);
+var wbutton = new mraa.Gpio(4);
 
 
 var date = new Date();
@@ -18,6 +19,7 @@ var myLcd = new LCD.Jhd1313m1(0, 0x3E, 0x62);
 myLcd.setColor(64,255,64);
 
 var listOfStuffToDisplay = [];
+var listOfWundergroundToDisplay = [];
 
 listOfStuffToDisplay["local"] = sensorReadings;
 
@@ -38,13 +40,9 @@ http.createServer(function (req, res) {
 }).listen(1337);
 console.log('Server running *:1337/');
 
-setInterval(function() {
-	myLcd.setCursor(0,0);
-	myLcd.write(fixedLengthString(getDateTime())); 
-	displayReadings();
-},1000);
-
 var currentIndexToDisplay = 0;
+var currentIndexOfWundergroundToDisplay = 0;
+
 var readingButton = false;
 setInterval(function() {
 	if (!readingButton) {
@@ -59,6 +57,31 @@ setInterval(function() {
 		readingButton = false;
 	}
 },100);
+
+setInterval(function() {
+	if (!readingButton) {
+		readingButton = true;
+		if (wbutton.read()) {
+			currentIndexOfWundergroundToDisplay++;
+			if (currentIndexOfWundergroundToDisplay >= Object.keys(listOfWundergroundToDisplay).length) {
+				currentIndexOfWundergroundToDisplay = 0;
+			}
+			console.log('displaying: ' + currentIndexOfWundergroundToDisplay + " of " + Object.keys(listOfWundergroundToDisplay).length)
+		}
+		readingButton = false;
+	}
+},100);
+
+
+setInterval(function() {
+	var key = Object.keys(listOfWundergroundToDisplay)[currentIndexOfWundergroundToDisplay];
+	var sr = listOfWundergroundToDisplay[key];
+//	console.log("Displaying " + key);
+
+	myLcd.setCursor(0,0);
+	myLcd.write(getWundergroundDisplayString(sr)); 
+	displayReadings();
+},1000);
 
 function displayReadings()
 {
@@ -79,6 +102,16 @@ function getDisplayString(sr) {
 	val += "F: " + sr.temperature;
 	val += " ";
 	val += sr.light;
+
+	return fixedLengthString(val);
+}
+
+function getWundergroundDisplayString(sr) {
+	var val = "+";
+	val += sr.hour + " ";
+	val += "F" + sr.temperature;
+	val += " W" + sr.wind;
+	val += " B" + sr.baro;
 
 	return fixedLengthString(val);
 }
@@ -107,11 +140,12 @@ function updateWeatherUnderground() {
 	  }
 
 	  var readings = {};
+	  readings.hour = futureHour;
 	  readings.temperature = forecast.temp.english;
 	  readings.wind = forecast.wspd.english;
 	  readings.baro = forecast.mslp.english;
 
-	  listOfStuffToDisplay["w"] = readings;
+	  listOfWundergroundToDisplay[futureHour] = readings;
 
 	  // not sure what you want to do with these data - just logging them out here
 	  console.log( 'in ' + futureHour + ' hours'
