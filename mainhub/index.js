@@ -1,5 +1,5 @@
 //require('./wunderground.js');
-var SensorReadings = require('../common/sensorReadings.js');
+var sensorReadings = require('../common/sensorReadings.js');
 
 var mraa = require("mraa"); // A new object of class "mraa"
 // Load i2clcd module
@@ -44,7 +44,6 @@ var B = 3975;
 
 function displayReadings()
 {
-	var sensorReadings = new SensorReadings();
 	sensorReadings.temperature = getTemp();
 	sensorReadings.light = getLight();
 
