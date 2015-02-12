@@ -13,7 +13,7 @@ myLcd.setColor(64,255,64);
 
 setInterval(function() {
 	myLcd.setCursor(0,0);
-	myLcd.write(fixedLengthString(getDateTime()); // doesn't work for some reason
+	myLcd.write(fixedLengthString(getDateTime())); // doesn't work for some reason
 	tempDisplay();
 },1000);
 
