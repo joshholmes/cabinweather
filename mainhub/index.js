@@ -45,13 +45,18 @@ setInterval(function() {
 },1000);
 
 var currentIndexToDisplay = 0;
+var readingButton = false;
 setInterval(function() {
-	if (button.read()) {
-		currentIndexToDisplay++;
-		if (currentIndexToDisplay >= Object.keys(listOfStuffToDisplay).length) {
-			currentIndexToDisplay = 0;
+	if (!readingButton) {
+		readingButton = true;
+		if (button.read()) {
+			currentIndexToDisplay++;
+			if (currentIndexToDisplay >= Object.keys(listOfStuffToDisplay).length) {
+				currentIndexToDisplay = 0;
+			}
+			console.log('displaying: ' + currentIndexToDisplay + " of " + Object.keys(listOfStuffToDisplay).length)
 		}
-		console.log('displaying: ' + currentIndexToDisplay + " of " + Object.keys(listOfStuffToDisplay).length)
+		readingButton = false;
 	}
 },100);
 
